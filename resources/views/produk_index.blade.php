@@ -30,10 +30,10 @@
                                         <td>{{ $a->Status }}</td>
                                         <td>{{ $a->created_at }}</td>
                                         <td> edit</td>
-                                        <a href="{{ url('dokter/' . $a->id . '/edit', []) }}"
+                                        <a href="{{ url('produk/' . $a->id . '/edit', []) }}"
                                             class="btn btn-primary btn-sm">Edit</a>
 
-                                        <form action="{{ url('dokter/' . $a->id, []) }}" method="post"
+                                        <form action="{{ url('produk/' . $a->id, []) }}" method="post"
                                             class="d-inline"onsubmit="return confirm('Apakah Dihapus?')">
                                             @method('delete')
                                             @csrf

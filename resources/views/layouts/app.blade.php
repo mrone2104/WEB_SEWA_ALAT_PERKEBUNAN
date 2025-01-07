@@ -35,39 +35,43 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
 
-
                         @auth
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Active</a>
-                            </li>
+
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                                    aria-expanded="false">Data alat kebun</a>
+                                    aria-expanded="false">Data Toko</a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">data penguna </a></li>
-                                    <li><a class="dropdown-item" href="#">data produk</a></li>
-                                    <li><a class="dropdown-item" href="#">data taransaksi</a></li>
-                                    <li><a class="dropdown-item" href="#">data katagori</a></li>
-                                    <li><a class="dropdown-item" href="#">peyewaan</a></li>
+                                    <li><a class="dropdown-item" href="#">Data </a></li>
+                                    <li><a class="dropdown-item" href="#">Tambah </a></li>
 
-                                    <li>
-                                        <hr class="dropdown-divider">
-
-                                    </li>
-
-                                    <li><a class="dropdown-item" href="{{ url('produk', []) }}">Data Produk</a></li>
-                                    <li><a class="dropdown-item" href="{{ url('produk/create', []) }}">Tambah produk</a>
-                                    </li>
-                                </ul>
+                                    <hr class="dropdown-divider">
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Link</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-                            </li>
-                        @endauth
+                            <li><a class="dropdown-item" href="{{ url('produk', []) }}">Data Produk</a></li>
+                            <li><a class="dropdown-item" href="{{ url('produk/create', []) }}">Tambah Produk</a></li>
+                        </ul>
+                        </li>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Laporan
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{ url('produk/laporan/cetak', []) }}"
+                                        target="
+                                    _blank">Laporan Produk</a>
+                                </li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </div>
 
+                        <li class="nav-item">
+                            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                        </li>
+
+
+
+                    @endauth
 
                     </ul>
 
@@ -112,6 +116,11 @@
         </nav>
 
         <main class="py-4">
+            @if (Session::has('pesan'))
+                <div class="alert alert-primary" role="alert">
+                    {{ Session::get('pesan') }}
+                </div>
+            @endif
             @yield('content')
         </main>
     </div>

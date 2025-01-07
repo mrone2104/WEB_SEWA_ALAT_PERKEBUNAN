@@ -35,9 +35,9 @@ class ProdukController extends Controller
 
         $request->validate([
             'Tanggal' => 'required',
-            'Pengguna_ID ' => 'required',
+            'Pengguna_ID' => 'required',
             'Total_Harga' => 'required',
-            'Status' => 'required'
+            'Status' => 'required',
         ]);
 
         $produk = new \App\Models\Produk();
@@ -62,22 +62,46 @@ class ProdukController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data['produk'] = \App\Models\Produk::findOrFail($id);
+        $data['list_sp'] = ['selesai', 'pending', 'dibatalakan'];
+        return view('produk_edit', $data);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string  $id)
     {
-        //
+        $request->validate([
+            'Tanggal' => 'required',
+            'Pengguna_ID' => 'required',
+            'Total_Harga' => 'required',
+            'Status' => 'required',
+        ]);
+
+        $produk = \App\Models\Produk::findOrFail($id);
+        $produk->Tanggal = $request->Tanggal;
+        $produk->Pengguna_ID  = $request->Pengguna_ID;
+        $produk->Total_Harga = $request->Total_Harga;
+        $produk->Status = $request->Status;
+        $produk->save();
+
+        return redirect('/produk')->with('pesan', 'Data sudah Diupdate');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $produk = \App\Models\Produk::findOrFail($id);
+        $produk->delete();
+        return back()->with('pesan', 'Data Sudah Dihapus');
+    }
+    public function laporan()
+    {
+        $data['produk'] = \App\Models\Produk::all();
+        $data['judul'] = 'Laporan Data Produk';
+        return view('produk_laporan', $data);
     }
 }
