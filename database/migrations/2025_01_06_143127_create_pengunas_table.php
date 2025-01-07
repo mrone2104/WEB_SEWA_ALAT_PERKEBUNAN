@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('pengunas', function (Blueprint $table) {
             $table->id();
+            $table->timestamps();
             $table->string('Nama', 255);
             $table->string('Email', 255);
             $table->text('Alamat');
             $table->string('No_Telepon', 15);
-            $table->timestamps();
         });
     }
 

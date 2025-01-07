@@ -4,8 +4,6 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-use function Laravel\Prompts\table;
-
 return new class extends Migration
 {
     /**
@@ -13,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('_produks', function (Blueprint $table) {
+        Schema::create('produks', function (Blueprint $table) {
             $table->id();
-            $table->Date('Tanggal', 10);
-            $table->integer('Pengguna_ID');
-            $table->decimal('Total_Harga', 10, 2);
-            $table->enum('Status', ['Selesai', 'Pending', 'Dibatalkan']);
+            $table->Date('Tanggal', 20);
+            $table->integer('Pengguna_ID', 20);
+            $table->integer('Total_Harga', 1000);
+            $table->string('Status', ['Selesai', 'Pending', 'Dibatalkan']);
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('_produks');
+        Schema::dropIfExists('produks');
     }
 };

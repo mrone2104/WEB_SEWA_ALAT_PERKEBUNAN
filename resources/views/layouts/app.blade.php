@@ -44,17 +44,20 @@
                                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
                                     aria-expanded="false">Data alat kebun</a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">data user </a></li>
-                                    <li><a class="dropdown-item" href="#">data alat</a></li>
-                                    <li><a class="dropdown-item" href="#">data kebun</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                    <li><a class="dropdown-item" href="#">data penguna </a></li>
+                                    <li><a class="dropdown-item" href="#">data produk</a></li>
+                                    <li><a class="dropdown-item" href="#">data taransaksi</a></li>
+                                    <li><a class="dropdown-item" href="#">data katagori</a></li>
+                                    <li><a class="dropdown-item" href="#">peyewaan</a></li>
 
                                     <li>
                                         <hr class="dropdown-divider">
+
                                     </li>
 
-                                    <li><a class="dropdown-item" href="#">Separated link</a></li>
+                                    <li><a class="dropdown-item" href="{{ url('produk', []) }}">Data Produk</a></li>
+                                    <li><a class="dropdown-item" href="{{ url('produk/create', []) }}">Tambah produk</a>
+                                    </li>
                                 </ul>
                             </li>
                             <li class="nav-item">

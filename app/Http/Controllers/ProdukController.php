@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Produk;
 use Illuminate\Http\Request;
 
 class ProdukController extends Controller
@@ -11,7 +12,9 @@ class ProdukController extends Controller
      */
     public function index()
     {
-        //
+        $data['produk'] = Produk::paginate(3);
+        $data['judul'] = "Data Produk";
+        return view('produk_index', $data);
     }
 
     /**
@@ -19,7 +22,9 @@ class ProdukController extends Controller
      */
     public function create()
     {
-        //
+
+        $data['list_sp'] = ['selesai', 'pending', 'dibatalakan'];
+        return view('produk_create', $data);
     }
 
     /**
@@ -27,7 +32,21 @@ class ProdukController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+            'Tanggal' => 'required',
+            'Pengguna_ID ' => 'required',
+            'Total_Harga' => 'required',
+            'Status' => 'required'
+        ]);
+
+        $produk = new \App\Models\Produk();
+        $produk->Tanggal = $request->Tanggal;
+        $produk->Pengguna_ID  = $request->Pengguna_ID;
+        $produk->Total_Harga = $request->Total_Harga;
+        $produk->Status = $request->Status;
+        $produk->save();
+        return back()->with('pesan', 'Data sudah Disimpan');
     }
 
     /**
